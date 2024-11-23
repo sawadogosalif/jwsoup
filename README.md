@@ -66,41 +66,6 @@ pd.read_parque(output_dir).head()
 ```
 ![alt text](assets/output_multi_page.PNG)
 
-## Testing
-
-To run tests, use `pytest`:
-
-```bash
-pytest
-```
-
-This will run all the tests defined in the `tests/` directory. Ensure you have `pytest` installed:
-
-```bash
-pip install pytest
-```
-
-### Example Test
-
-Here’s an example of a test that mocks HTTP requests to check if the scraper is working correctly:
-
-```python
-from unittest.mock import patch, MagicMock
-from jwsoup import scrape_single_page
-
-@patch("requests.get")
-def test_scrape_single_page(mock_get):
-    """Test that scrape_single_page correctly scrapes verses from a page."""
-    mock_response = MagicMock()
-    mock_response.status_code = 200
-    mock_response.content = b"<html><body><span class='verse' id='verse_1'>In the beginning God created the heavens and the earth.</span></body></html>"
-    mock_get.return_value = mock_response
-
-    verses, next_url = scrape_single_page("https://www.jw.org/fr/biblioth%C3%A8que/bible/bible-d-etude/livres/Gen%C3%A8se/1/")
-    
-    assert len(verses) == 1
-    assert verses[0] == ("verse_1", "In the beginning God created the heavens and the earth.")
-```
 
 ## License
 
