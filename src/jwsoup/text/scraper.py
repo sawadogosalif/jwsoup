@@ -49,7 +49,7 @@ def save_verses_to_parquet(verses: list, current_url: str, output_dir: str, page
     df.to_parquet(output_dir, partition_cols=["page"], engine="pyarrow")
 
 
-def scrape_multi_page(start_url: str, output_dir="data_JW.parquet", max_pages: int = 10000, page_sep: str = "books"):
+def scrape_multi_page(start_url: str, output_dir:str, max_pages: int = 10000, page_sep: str = "books"):
     """Scrape multiple pages starting from the given URL and store the data."""
     current_url = start_url
     i = 0
