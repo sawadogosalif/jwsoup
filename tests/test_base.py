@@ -3,13 +3,16 @@ from unittest.mock import patch, MagicMock
 from jwsoup.text import scrape_single_page, scrape_multi_page
 
 # Sample mock data for testing
-BASE_URL = "https://www.jw.org/fr/biblioth%C3%A8que/bible/bible-d-etude/livres/Gen%C3%A8se/"
+BASE_URL = (
+    "https://www.jw.org/fr/biblioth%C3%A8que/bible/bible-d-etude/livres/Gen%C3%A8se/"
+)
 MOCK_URL = f"{BASE_URL}1/"
 MOCK_VERSES = [
     ("verse_1", "In the beginning God created the heavens and the earth."),
     ("verse_2", "Now the earth was formless and empty."),
 ]
 MOCK_NEXT_URL = f"{BASE_URL}2/"
+
 
 def mock_response(content: str, status_code: int = 200) -> MagicMock:
     """Helper to create a mock HTTP response."""
@@ -23,13 +26,15 @@ def mock_response(content: str, status_code: int = 200) -> MagicMock:
 def test_scrape_single_page(mock_get):
     """Test that scrape_single_page correctly scrapes verses from a single page."""
     # Arrange
-    mock_get.return_value = mock_response("""
+    mock_get.return_value = mock_response(
+        """
         <html>
             <body>
                 <span class='verse' id='verse_1'>In the beginning God created the heavens and the earth.</span>
             </body>
         </html>
-    """)
+    """
+    )
 
     # Act
     verses, next_url = scrape_single_page(MOCK_URL)
@@ -45,7 +50,8 @@ def test_scrape_multi_page(mock_get):
     """Test that scrape_multi_page correctly scrapes multiple pages."""
     # Arrange
     mock_get.side_effect = [
-        mock_response(f"""
+        mock_response(
+            f"""
             <html>
                 <body>
                     <span class='verse' id='verse_1'>In the beginning God created the heavens and the earth.</span>
@@ -54,14 +60,17 @@ def test_scrape_multi_page(mock_get):
                     </div>
                 </body>
             </html>
-        """),
-        mock_response("""
+        """
+        ),
+        mock_response(
+            """
             <html>
                 <body>
                     <span class='verse' id='verse_2'>Now the earth was formless and empty.</span>
                 </body>
             </html>
-        """)
+        """
+        ),
     ]
 
     # Act
@@ -105,7 +114,8 @@ def test_scrape_multi_page_max_limit(mock_get):
     """Test that scrape_multi_page respects the max_pages limit."""
     # Arrange
     mock_get.side_effect = [
-        mock_response(f"""
+        mock_response(
+            f"""
             <html>
                 <body>
                     <span class='verse' id='verse_1'>In the beginning God created the heavens and the earth.</span>
@@ -114,20 +124,26 @@ def test_scrape_multi_page_max_limit(mock_get):
                     </div>
                 </body>
             </html>
-        """),
-        mock_response("""
+        """
+        ),
+        mock_response(
+            """
             <html>
                 <body>
                     <span class='verse' id='verse_2'>Now the earth was formless and empty.</span>
                 </body>
             </html>
-        """)
+        """
+        ),
     ]
 
     # Act
     all_verses = scrape_multi_page(MOCK_URL, max_pages=1, page_sep="livres")
 
     # Assert
-    assert len(all_verses) == 1, "Should scrape only one page when max_pages is set to 1."
-    assert all_verses == [MOCK_VERSES[0]], "Scraped verses should match the first page data."
-
+    assert (
+        len(all_verses) == 1
+    ), "Should scrape only one page when max_pages is set to 1."
+    assert all_verses == [
+        MOCK_VERSES[0]
+    ], "Scraped verses should match the first page data."
