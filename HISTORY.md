@@ -17,6 +17,7 @@
 ### Added
 - Typo correction in package descritption
 
-## [0.0.2] - 2024-11-24
+## [0.0.5] - 2024-11-24
 ### Added
 - Add project url in setup
+- Fix image rendering in pypi
