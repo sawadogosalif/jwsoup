@@ -16,3 +16,7 @@
 ## [0.0.2] - 2024-11-23
 ### Added
 - Typo correction in package descritption
+
+## [0.0.2] - 2024-11-24
+### Added
+- Add project url in setup

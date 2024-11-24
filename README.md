@@ -1,4 +1,4 @@
-# JW Scraper
+# JW SOUP
 
 `jwsoup` is a simple Python package that scrapes Bible data from the JW.org website. The package provides functionality for scraping Bible verses and saving them in a structured format. It supports scraping data from one or multiple pages, handling paginated content, and storing the results in a Parquet file.
 
