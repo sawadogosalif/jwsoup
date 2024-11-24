@@ -42,6 +42,7 @@ test_requirements = [
 
 setup(
     name=name,
+    url=url,
     keywords=name,
     version=version,
     zip_safe=False,
