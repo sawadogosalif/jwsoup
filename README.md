@@ -64,7 +64,7 @@ The scraped data is stored in a Parquet file for efficient storage and querying.
 import pandas as pd
 pd.read_parque(output_dir).head()
 ```
-![alt text](assets/output_multi_page.PNG)
+![alt text](./assets/output_multi_page.PNG)
 
 
 ## License
