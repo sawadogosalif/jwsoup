@@ -27,7 +27,7 @@ pip install .
 
 ## Usage
 
-### Scrape a Single Page
+### Scrape text - Single Page
 
 You can scrape a single page of Bible verses using the `scrape_single_page` function. This function returns a list of verses and the URL for the next page (if available).
 
@@ -44,7 +44,7 @@ for verse in verses:
 print(f"Next page URL: {next_url}")
 ```
 
-### Scrape Multiple Pages
+### Scrape text - Multiple Pages
 
 To scrape multiple pages starting from a given URL, use the `scrape_multi_page` function. This function will follow pagination and save the scraped data in a Parquet file.
 
@@ -66,6 +66,15 @@ pd.read_parque(output_dir).head()
 ```
 ![alt text](https://raw.githubusercontent.com/sawadogosalif/jwsoup/main/assets/output_multi_page.png)
 
+
+### Downloads audios
+
+```python
+
+start_url = "https://www.jw.org/mos/d-s%E1%BA%BDn-yiisi/biible/nwt/books/yikri"
+output_dir = "audio_files"
+download_audios(start_url, output_dir,max_pages=3)
+```
 
 ## License
 

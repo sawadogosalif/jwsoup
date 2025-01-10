@@ -21,3 +21,12 @@
 ### Added
 - Add project url in setup
 - Fix image rendering in pypi
+
+
+- Improve next button parsing
+
+
+## [0.1.0] - 2024-11-24
+### Added
+- Introduce audio dowloaders
+- Improve next button parsing

@@ -30,7 +30,7 @@ def scrape_single_page(url: str) -> tuple:
 
     if next_page:
         next_button = next_page.find(
-            "a", class_="primaryButton articleNavButton jsBibleChapter"
+            "a", class_="primaryButton"
         )
         if next_button:
             next_url = next_button.get("href")
