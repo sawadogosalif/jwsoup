@@ -26,7 +26,12 @@
 - Improve next button parsing
 
 
-## [0.1.0] - 2024-11-24
+## [0.1.0] - 2025-01-10
 ### Added
 - Introduce audio dowloaders
 - Improve next button parsing
+
+
+## [0.1.1] - 2025-01-11
+### Added
+- Good naming of folder with urllib.parse.quote
